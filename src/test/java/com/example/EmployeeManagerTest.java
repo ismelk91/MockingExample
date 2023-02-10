@@ -44,7 +44,7 @@ class EmployeeManagerTest {
     }
 
     @Test
-    public void testShouldPayEmployeesTwoEmployees() {
+    public void testShouldPayTwoEmployees() {
         EmployeeRepositoryStub employeeRepositoryStub = new EmployeeRepositoryStub();
         BankServiceDummy bankServiceDummy = new BankServiceDummy();
         employeeManager = new EmployeeManager(employeeRepositoryStub, bankServiceDummy);
