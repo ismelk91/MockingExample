@@ -24,13 +24,13 @@ class EmployeeManagerTest {
     void setUp() {
         bankServiceMock = mock(BankService.class);
         employeeRepositoryMock = mock(EmployeeRepository.class);
-        employeeManager = new EmployeeManager(employeeRepositoryMock, bankServiceMock);
     }
 
     @Test
     public void testShouldPayTwoEmployeesMockito() {
-        Employee employee1 = new Employee("1",10000);
-        Employee employee2 = new Employee("2",20000);
+        employeeManager = new EmployeeManager(employeeRepositoryMock,bankServiceMock);
+        Employee employee1 = new Employee("1", 10000);
+        Employee employee2 = new Employee("2", 20000);
 
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employee1);
@@ -38,9 +38,9 @@ class EmployeeManagerTest {
 
         when(employeeRepositoryMock.findAll()).thenReturn(employeeList);
         int payments = employeeManager.payEmployees();
-        assertEquals(2,payments);
+        assertEquals(2, payments);
 
-        verify(bankServiceMock,times(2)).pay(anyString(),anyDouble());
+        verify(bankServiceMock, times(2)).pay(anyString(), anyDouble());
     }
 
     @Test
@@ -50,7 +50,7 @@ class EmployeeManagerTest {
         employeeManager = new EmployeeManager(employeeRepositoryStub, bankServiceDummy);
 
         int payments = employeeManager.payEmployees();
-        assertEquals(2,payments);
+        assertEquals(2, payments);
     }
 
 }
